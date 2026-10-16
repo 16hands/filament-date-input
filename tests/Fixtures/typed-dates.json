@@ -1,0 +1,20 @@
+[
+    { "typed": "15031962", "isoDate": "1962-03-15", "shown": "15/03/1962" },
+    { "typed": "15/03/1962", "isoDate": "1962-03-15", "shown": "15/03/1962" },
+    { "typed": "1/3/1962", "isoDate": "1962-03-01", "shown": "01/03/1962" },
+    { "typed": "15-03-1962", "isoDate": "1962-03-15", "shown": "15/03/1962" },
+    { "typed": "15.03.1962", "isoDate": "1962-03-15", "shown": "15/03/1962" },
+    { "typed": "15 03 1962", "isoDate": "1962-03-15", "shown": "15/03/1962" },
+    { "typed": "29/02/1964", "isoDate": "1964-02-29", "shown": "29/02/1964" },
+    { "typed": "1962-03-15", "entry": "paste", "isoDate": "1962-03-15", "shown": "15/03/1962" },
+    { "typed": "  15/03/1962  ", "entry": "paste", "isoDate": "1962-03-15", "shown": "15/03/1962" },
+    { "typed": "15/3/62", "message": "Please enter the full year, e.g. 1962" },
+    { "typed": "15/03/0962", "message": "Please enter the full year, e.g. 1962" },
+    { "typed": "31/02/1962", "message": "That date doesn't exist" },
+    { "typed": "29/02/1962", "message": "That date doesn't exist" },
+    { "typed": "15/13/1962", "message": "That date doesn't exist" },
+    { "typed": "00/03/1962", "message": "That date doesn't exist" },
+    { "typed": "15/03", "message": "Enter the date as dd/mm/yyyy, e.g. 15/03/1962" },
+    { "typed": "abc", "message": "Enter the date as dd/mm/yyyy, e.g. 15/03/1962" },
+    { "typed": "", "isoDate": null, "shown": "" }
+]

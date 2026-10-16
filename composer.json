@@ -1,0 +1,66 @@
+{
+    "name": "16hands/filament-date-input",
+    "description": "Type-first date input for Filament: masked typing, a decade > year > month > day calendar and a help pop-up",
+    "keywords": [
+        "16hands",
+        "laravel",
+        "filament",
+        "date",
+        "date-input",
+        "form"
+    ],
+    "homepage": "https://github.com/16hands/filament-date-input",
+    "support": {
+        "issues": "https://github.com/16hands/filament-date-input/issues",
+        "source": "https://github.com/16hands/filament-date-input"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "16Hands",
+            "email": "carl@16hands.co.nz",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "filament/forms": "^5.0",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "orchestra/testbench": "^10.0",
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-arch": "^4.0",
+        "pestphp/pest-plugin-laravel": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SixteenHands\\FilamentDateInput\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SixteenHands\\FilamentDateInput\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SixteenHands\\FilamentDateInput\\FilamentDateInputServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

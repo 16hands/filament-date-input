@@ -1,0 +1,443 @@
+/*
+ * 16hands/filament-date-input — built on Filament's own colour variables, so it
+ * follows the panel's primary colour and dark mode with no Tailwind build step.
+ */
+
+.fi-date-input-shell {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+}
+
+.fi-date-input-text {
+    flex: 1;
+    min-width: 0;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+}
+
+.fi-date-input-calendar-button {
+    display: grid;
+    place-items: center;
+    padding-inline: 0.625rem;
+    border: 0;
+    border-inline-start: 1px solid var(--gray-200);
+    background: transparent;
+    color: var(--gray-500);
+    cursor: pointer;
+}
+
+.fi-date-input-calendar-button:hover {
+    color: var(--primary-600);
+    background: color-mix(in oklab, var(--primary-500) 10%, transparent);
+}
+
+.fi-date-input-calendar-button:focus-visible {
+    outline: 2px solid var(--primary-500);
+    outline-offset: -2px;
+}
+
+.fi-date-input-calendar-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+:where(.dark, .dark *) .fi-date-input-calendar-button {
+    border-inline-start-color: color-mix(in oklab, white 10%, transparent);
+    color: var(--gray-400);
+}
+
+:where(.dark, .dark *) .fi-date-input-calendar-button:hover {
+    color: var(--primary-400);
+}
+
+.fi-date-input-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.fi-date-input-message {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.375rem;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: var(--danger-600);
+}
+
+:where(.dark, .dark *) .fi-date-input-message {
+    color: var(--danger-400);
+}
+
+.fi-date-input-message-help-link {
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-weight: 500;
+    color: var(--primary-600);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+}
+
+:where(.dark, .dark *) .fi-date-input-message-help-link {
+    color: var(--primary-400);
+}
+
+/* Calendar panel */
+
+.fi-date-input-panel {
+    z-index: 50;
+    width: 19rem;
+    max-width: calc(100vw - 2rem);
+    padding: 0.75rem;
+    border-radius: var(--radius-xl, 0.75rem);
+    background: white;
+    box-shadow:
+        0 0 0 1px color-mix(in oklab, var(--gray-950) 5%, transparent),
+        0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+:where(.dark, .dark *) .fi-date-input-panel {
+    background: var(--gray-900);
+    box-shadow:
+        0 0 0 1px color-mix(in oklab, white 10%, transparent),
+        0 10px 15px -3px rgb(0 0 0 / 0.4);
+}
+
+.fi-date-input-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.fi-date-input-nav,
+.fi-date-input-title,
+.fi-date-input-cell,
+.fi-date-input-footer-button {
+    border: 0;
+    background: transparent;
+    font: inherit;
+    color: var(--gray-950);
+    cursor: pointer;
+}
+
+:where(.dark, .dark *) .fi-date-input-nav,
+:where(.dark, .dark *) .fi-date-input-title,
+:where(.dark, .dark *) .fi-date-input-cell {
+    color: white;
+}
+
+.fi-date-input-nav {
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-md, 0.375rem);
+    font-size: 1.125rem;
+    line-height: 1;
+    color: var(--gray-500);
+}
+
+.fi-date-input-title {
+    flex: 1;
+    padding: 0.375rem 0.5rem;
+    border-radius: var(--radius-md, 0.375rem);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: start;
+    font-variant-numeric: tabular-nums;
+}
+
+.fi-date-input-title:disabled {
+    cursor: default;
+}
+
+.fi-date-input-title-up {
+    margin-inline-start: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--gray-500);
+}
+
+.fi-date-input-nav:hover,
+.fi-date-input-title:hover:not(:disabled),
+.fi-date-input-cell:hover:not(:disabled),
+.fi-date-input-footer-button:hover {
+    background: color-mix(in oklab, var(--primary-500) 10%, transparent);
+}
+
+.fi-date-input-crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+    padding-inline: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--gray-500);
+}
+
+.fi-date-input-crumb {
+    display: inline-flex;
+    gap: 0.25rem;
+}
+
+.fi-date-input-crumbs [aria-current='step'] {
+    font-weight: 600;
+    color: var(--gray-950);
+}
+
+:where(.dark, .dark *) .fi-date-input-crumbs [aria-current='step'] {
+    color: white;
+}
+
+.fi-date-input-weekdays,
+.fi-date-input-grid-days {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.25rem;
+}
+
+.fi-date-input-grid-wide {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.25rem;
+}
+
+.fi-date-input-weekday {
+    padding-block: 0.125rem 0.25rem;
+    font-size: 0.6875rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-500);
+}
+
+.fi-date-input-cell {
+    position: relative;
+    min-height: 2.5rem;
+    padding: 0;
+    border-radius: var(--radius-lg, 0.5rem);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.fi-date-input-grid-wide .fi-date-input-cell {
+    min-height: 3.25rem;
+}
+
+.fi-date-input-cell:focus-visible {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 1px;
+}
+
+.fi-date-input-cell-outside {
+    color: var(--gray-400);
+}
+
+.fi-date-input-cell-today {
+    box-shadow: inset 0 0 0 1.5px var(--primary-500);
+}
+
+.fi-date-input-cell-selected,
+.fi-date-input-cell-selected:hover:not(:disabled) {
+    background: var(--primary-600);
+    color: white;
+    font-weight: 600;
+}
+
+:where(.dark, .dark *) .fi-date-input-cell-selected {
+    background: var(--primary-500);
+    color: var(--gray-950);
+}
+
+.fi-date-input-cell-holds-selection::after {
+    content: '';
+    position: absolute;
+    bottom: 0.4375rem;
+    left: 50%;
+    width: 0.3125rem;
+    height: 0.3125rem;
+    margin-left: -0.15625rem;
+    border-radius: 9999px;
+    background: var(--primary-500);
+}
+
+.fi-date-input-cell:disabled {
+    opacity: 0.45;
+    color: var(--gray-400);
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    cursor: not-allowed;
+}
+
+.fi-date-input-panel-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 0.625rem;
+    padding-top: 0.625rem;
+    border-top: 1px solid var(--gray-200);
+}
+
+:where(.dark, .dark *) .fi-date-input-panel-footer {
+    border-top-color: color-mix(in oklab, white 10%, transparent);
+}
+
+.fi-date-input-footer-button {
+    padding: 0.25rem 0.375rem;
+    border-radius: var(--radius-md, 0.375rem);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--primary-600);
+}
+
+.fi-date-input-footer-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+:where(.dark, .dark *) .fi-date-input-footer-button {
+    color: var(--primary-400);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fi-date-input-panel,
+    .fi-date-input-cell {
+        transition: none;
+    }
+}
+
+/* Help pop-up */
+
+.fi-date-input-help-trigger {
+    display: inline-grid;
+    place-items: center;
+    /* Same height as the label's line box, so the (?) never pushes the box
+       below the fields beside it. */
+    height: 1.25rem;
+    width: 1.25rem;
+    padding: 0;
+    border: 0;
+    border-radius: 9999px;
+    background: none;
+    color: var(--gray-400);
+    cursor: pointer;
+}
+
+.fi-date-input-help-trigger:hover {
+    color: var(--primary-600);
+}
+
+:where(.dark, .dark *) .fi-date-input-help-trigger:hover {
+    color: var(--primary-400);
+}
+
+.fi-date-input-help-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.fi-date-input-help-panel {
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.35rem;
+    color: var(--gray-700);
+}
+
+:where(.dark, .dark *) .fi-date-input-help-panel {
+    color: var(--gray-300);
+}
+
+.fi-date-input-help-title {
+    margin: 0 0 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gray-950);
+}
+
+:where(.dark, .dark *) .fi-date-input-help-title {
+    color: white;
+}
+
+.fi-date-input-help-heading {
+    margin: 0.625rem 0 0.25rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-500);
+}
+
+.fi-date-input-help-line {
+    margin: 0;
+}
+
+.fi-date-input-help-rows {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.25rem 0.75rem;
+    margin: 0;
+}
+
+.fi-date-input-help-rows dd {
+    margin: 0;
+}
+
+.fi-date-input-help-panel kbd {
+    padding: 0.0625rem 0.375rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 0.3125rem;
+    background: var(--gray-50);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+:where(.dark, .dark *) .fi-date-input-help-panel kbd {
+    border-color: color-mix(in oklab, white 10%, transparent);
+    background: color-mix(in oklab, white 5%, transparent);
+}
+
+.fi-date-input-help-field-note {
+    margin: 0.625rem 0 0;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--gray-200);
+    font-weight: 500;
+}
+
+:where(.dark, .dark *) .fi-date-input-help-field-note {
+    border-top-color: color-mix(in oklab, white 10%, transparent);
+}
+
+/*
+ * Server-side errors. The component root is wire:ignore'd so Livewire cannot
+ * swap the wrapper's fi-invalid class in after validation fails; the error
+ * message beside it does re-render, so the ring keys off that instead and
+ * mirrors Filament's own invalid ring (1px, 2px while focused).
+ */
+.fi-fo-field-content-col:has(> [data-validation-error]) > .fi-date-input > .fi-input-wrp {
+    box-shadow: 0 0 0 1px var(--danger-600);
+}
+
+.fi-fo-field-content-col:has(> [data-validation-error]) > .fi-date-input > .fi-input-wrp:not(.fi-disabled):focus-within {
+    box-shadow: 0 0 0 2px var(--danger-600);
+}
+
+:where(.dark, .dark *) .fi-fo-field-content-col:has(> [data-validation-error]) > .fi-date-input > .fi-input-wrp {
+    box-shadow: 0 0 0 1px var(--danger-500);
+}
+
+:where(.dark, .dark *) .fi-fo-field-content-col:has(> [data-validation-error]) > .fi-date-input > .fi-input-wrp:not(.fi-disabled):focus-within {
+    box-shadow: 0 0 0 2px var(--danger-500);
+}
